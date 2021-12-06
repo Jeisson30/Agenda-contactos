@@ -1,0 +1,66 @@
+
+<div class="container-xl">
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">
+          MI LISTA DE CONTACTOS
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mt-3">
+        <ul class="list-group">
+          <li  *ngFor="let contacto of contactoArray" class="list-group-item list-group-item-action" 
+          (click)="openEdit(contacto)"
+          [class.active]="contacto == seleccionContacto">
+              <span class="badge bg-primary">{{contacto.id}}</span>Nombre: {{contacto.nombre}} - Tel: {{contacto.telefono}} - Nacimiento: {{contacto.nacimiento}}
+               - Direccion: {{contacto.direccion}} - Correo: {{contacto.correo}}-- Edad:
+              
+          </li>
+        </ul>
+        <div class="form-group mt-3">
+          <input type="text" placeholder="Buscar">
+        </div>
+
+        <!--formulario-->
+        <div class="card mt-3">
+          <div class="card-body"></div>
+            <div class="card-title">
+              Ingresa un nuevo contacto
+            </div>
+            <div class="form-group">
+              <input type="text" [(ngModel)]="seleccionContacto.nombre" placeholder="Nombre" class="form-control" required="">
+            </div><br>
+            <div class="form-group">  
+              <input type="number" [(ngModel)]="seleccionContacto.telefono" placeholder="Telefono" class="form-control" required="" min="0">
+            </div><br>
+            <div class="form-group">
+              <input type="date"   [(ngModel)]="seleccionContacto.nacimiento" placeholder="Fecha de nacimiento" class="form-control" required>
+            </div><br>
+            <div class="form-group">
+              <input type="text" [(ngModel)]="seleccionContacto.direccion" placeholder="Direccion" class="form-control" required>
+            </div><br>
+            <div class="form-group">
+              <input type="email  " [(ngModel)]="seleccionContacto.correo" placeholder="E-Mail" class="form-control" required>
+            </div><br>
+            <button (click)="addOrEdit()" class="btn btn-primary">Enviar</button><br>
+            <button *ngIf="seleccionContacto.id !== 0" (click)="delete()" class="btn btn-danger">Borrar</button>
+
+            <!--calcular edad-->
+            <div class="form-group mt-3">
+              <input type="date" onchange="edad(event);" name="fecha">
+                <h3>Calcula la edad</h3>
+                <h3 id="eda">su edad es:</h3>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <img class="img-1" src="../assets/imagenes/img.png" alt="">
+      </div>
+    </div>
+  </div>
+  
